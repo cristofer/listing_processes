@@ -1,11 +1,36 @@
-<div data-controller="process">
-  <% if @list_of_processes.blank? %>
-    <div>Loading the processes...</div>
-  <% else %>
-    <ul>
-      <% @list_of_processes.each do |process| %>
-        <li> <%= process[:user] %> </li>
-      <% end %>
-    </ul>
-  <% end %>
+<div class="box">
+  <div data-controller="process">
+    <% if @list_of_processes.blank? %>
+      <div>Loading the processes...</div>
+    <% else %>
+      <table class="table is-striped">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>PID</th>
+            <th>CPU</th>
+            <th>MEM</th>
+            <th>STATUS</th>
+            <th>STARTED</th>
+            <th>TIME</th>
+            <th>COMMAND</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @list_of_processes.each do |process| %>
+            <tr>
+              <td><%= process[:user] %></td>
+              <td><%= process[:pid] %></td>
+              <td><%= process[:cpu] %></td>
+              <td><%= process[:mem] %></td>
+              <td><%= process[:status] %></td>
+              <td><%= process[:started] %></td>
+              <td><%= process[:time] %></td>
+              <td style="word-break: break-all;"><%= process[:command] %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
 </div>
