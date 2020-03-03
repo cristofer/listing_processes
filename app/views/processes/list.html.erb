@@ -1,0 +1,11 @@
+<div data-controller="process">
+  <% if @list_of_processes.blank? %>
+    <div>Loading the processes...</div>
+  <% else %>
+    <ul>
+      <% @list_of_processes.each do |process| %>
+        <li> <%= process[:user] %> </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
