@@ -1,0 +1,20 @@
+version: '3'
+services:
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/application
+    ports:
+      - "3000:3000"
+    environment:
+      - WEBPACKER_DEV_SERVER_HOST=webpacker
+  webpacker:
+    build: .
+    env_file:
+      - '.env.docker'
+    command: ./bin/webpack-dev-server
+    volumes:
+      - .:/webpacker-example-app
+    ports:
+      - '3035:3035'
